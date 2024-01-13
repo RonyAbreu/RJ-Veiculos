@@ -2,14 +2,14 @@ package enums;
 
 public enum TipoCombustivel {
     GASOLINA("gasolina"), ALCOOL("alcool"), FLEX("flex");
-    private String combustivel;
+    private String tipoCombustivel;
 
-    TipoCombustivel(String combustivel){
-        this.combustivel = combustivel;
+    TipoCombustivel(String tipoCombustivel){
+        this.tipoCombustivel = tipoCombustivel;
 
     }
 
-    public String getCombustivel() {
-        return combustivel;
+    public String getTipoCombustivel() {
+        return tipoCombustivel;
     }
 }
