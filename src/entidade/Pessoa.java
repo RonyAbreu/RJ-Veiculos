@@ -1,6 +1,7 @@
 package entidade;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Pessoa {
     private String nome;
@@ -8,6 +9,7 @@ public class Pessoa {
     private String email;
     private LocalDate dataNascimento;
     private Endereco endereco;
+    private Documento documento;
 
     public Pessoa(){
     }
@@ -29,6 +31,23 @@ public class Pessoa {
                 ", dataNascimento=" + dataNascimento +
                 ", endereco=" + endereco +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Pessoa pessoa = (Pessoa) object;
+        return Objects.equals(documento, pessoa.documento);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(documento);
+    }
+
+    public String getNumeracaoDocumento(){
+        return documento.getNumeracao();
     }
 
     public String getNome() {
@@ -69,5 +88,13 @@ public class Pessoa {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public Documento getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(Documento documento) {
+        this.documento = documento;
     }
 }

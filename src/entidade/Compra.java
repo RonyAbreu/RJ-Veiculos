@@ -1,5 +1,7 @@
 package entidade;
 
+import enums.TipoPagamento;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
