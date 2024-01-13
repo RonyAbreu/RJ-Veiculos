@@ -1,4 +1,4 @@
-package infra.impl;
+package infra.interfaces;
 
 import java.util.List;
 
