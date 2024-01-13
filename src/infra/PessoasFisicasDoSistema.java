@@ -4,6 +4,7 @@ import entidade.subentidade.PessoaPF;
 import infra.impl.CrudInterface;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PessoasFisicasDoSistema implements CrudInterface<PessoaPF> {
@@ -26,6 +27,16 @@ public class PessoasFisicasDoSistema implements CrudInterface<PessoaPF> {
 
     @Override
     public PessoaPF atualizar(String id, PessoaPF type) {
+        return null;
+    }
+
+    @Override
+    public Boolean existeNoSistema(String id) {
+        return null;
+    }
+
+    @Override
+    public List<PessoaPF> retornarTodos() {
         return null;
     }
 }
