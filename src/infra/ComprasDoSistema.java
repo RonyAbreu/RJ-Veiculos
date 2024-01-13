@@ -1,40 +1,44 @@
 package infra;
 
 import entidade.Compra;
-import infra.impl.CrudInterface;
+import exceptions.CompraException;
+import infra.interfaces.GerenciaAluguelECompraInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComprasDoSistema implements CrudInterface<Compra> {
-    private final List<Compra> compras = new ArrayList<>();
-    @Override
-    public void cadastrar(Compra type) {
+public class ComprasDoSistema implements GerenciaAluguelECompraInterface<Compra> {
+    private final List<Compra> listaDeCompras = new ArrayList<>();
 
+    @Override
+    public void cadastrar(Compra compra) {
+        listaDeCompras.add(compra);
     }
 
     @Override
-    public void remover(String id) {
-
+    public void remover(String email, String chassi) {
+        //TODO
     }
 
     @Override
-    public Compra buscar(String id) {
-        return null;
+    public List<Compra> buscar(String numeracaoDocumento) {
+        List<Compra> comprasRetornadas = new ArrayList<>();
+
+        for (Compra c : listaDeCompras){
+            if (c.getPessoa().getNumeracaoDocumento().equals(numeracaoDocumento)){
+                comprasRetornadas.add(c);
+            }
+        }
+
+        if (comprasRetornadas.isEmpty()){
+            throw new CompraException();
+        }
+
+        return comprasRetornadas;
     }
 
     @Override
-    public Compra atualizar(String id, Compra type) {
-        return null;
-    }
-
-    @Override
-    public Boolean existeNoSistema(String id) {
-        return null;
-    }
-
-    @Override
-    public List<Compra> retornarTodos() {
-        return null;
+    public List<Compra> listarTodos() {
+        return listaDeCompras;
     }
 }
