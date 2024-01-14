@@ -15,6 +15,19 @@ public class Carro {
     private BigDecimal valorHora;
     private BigDecimal valorCarro;
 
+    public Carro(){
+    }
+
+    public Carro(String modelo, String marca, String cor, TipoCombustivel combustivel, Integer quantPortas, BigDecimal valorHora, BigDecimal valorCarro) {
+        this.modelo = modelo;
+        this.marca = marca;
+        this.cor = cor;
+        this.combustivel = combustivel;
+        this.quantPortas = quantPortas;
+        this.valorHora = valorHora;
+        this.valorCarro = valorCarro;
+    }
+
     @Override
     public String toString() {
         return "Carro{" +
