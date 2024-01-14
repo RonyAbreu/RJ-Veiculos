@@ -54,6 +54,13 @@ public class Carro {
     public int hashCode() {
         return Objects.hash(getModelo(), getMarca(), getCor(), getCombustivel(), getQuantPortas());
     }
+    public String getNumeroChassi() {
+        return numeroChassi;
+    }
+
+    public void setNumeroChassi(String numeroChassi) {
+        this.numeroChassi = numeroChassi;
+    }
 
     public String getModelo() {
         return modelo;
