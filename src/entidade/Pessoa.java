@@ -14,12 +14,13 @@ public class Pessoa {
     public Pessoa(){
     }
 
-    public Pessoa(String nome, String telefone, String email, LocalDate dataNascimento, Endereco endereco) {
+    public Pessoa(String nome, String telefone, String email, LocalDate dataNascimento, Endereco endereco, Documento documento) {
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
         this.dataNascimento = dataNascimento;
         this.endereco = endereco;
+        this.documento = documento;
     }
 
     @Override
@@ -30,6 +31,7 @@ public class Pessoa {
                 ", email='" + email + '\'' +
                 ", dataNascimento=" + dataNascimento +
                 ", endereco=" + endereco +
+                ", documento=" + documento +
                 '}';
     }
 

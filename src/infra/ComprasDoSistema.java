@@ -17,7 +17,14 @@ public class ComprasDoSistema implements GerenciaAluguelECompraInterface<Compra>
 
     @Override
     public void remover(String email, String chassi) {
-        //TODO
+        for (Compra c : listaDeCompras){
+            if (c.emailEhValido(email) && c.chassiEhValido(chassi)){
+                listaDeCompras.remove(c);
+                return;
+            }
+        }
+
+        throw new CompraException("Nenhuma compra foi encontrada!");
     }
 
     @Override

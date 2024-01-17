@@ -34,6 +34,14 @@ public class Compra {
                 '}';
     }
 
+    public boolean chassiEhValido(String chassi){
+        return carro.getNumeroChassi().equals(chassi);
+    }
+
+    public boolean emailEhValido(String email){
+        return pessoa.getEmail().equals(email);
+    }
+
     public Pessoa getPessoa() {
         return pessoa;
     }
