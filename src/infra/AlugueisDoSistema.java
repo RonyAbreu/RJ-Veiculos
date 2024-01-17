@@ -1,7 +1,8 @@
-package infra.interfaces;
+package infra;
 
 import entidade.Aluguel;
 import exceptions.AluguelException;
+import infra.interfaces.GerenciaAluguelECompraInterface;
 
 import java.util.ArrayList;
 import java.util.List;
