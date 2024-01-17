@@ -40,6 +40,14 @@ public class Aluguel {
         return Objects.hash(getPessoa(), getCarro(), getValorTotal());
     }
 
+    public Boolean emailEChassiEhValido(String email, String chassi){
+        return pessoa.getEmail().equalsIgnoreCase(email) && carro.getNumeroChassi().equalsIgnoreCase(chassi);
+    }
+
+    public Boolean documentoEhValido(String numeracaoDocumento){
+        return pessoa.getNumeracaoDocumento().equalsIgnoreCase(numeracaoDocumento);
+    }
+
     public Pessoa getPessoa() {
         return pessoa;
     }
