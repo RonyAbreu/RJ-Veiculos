@@ -15,15 +15,13 @@ public class Aluguel {
     private LocalDate dataDaChegada;
     private TipoPagamento pagamento;
 
-    public Aluguel() {
+    public Aluguel() {}
 
-    }
-
-    public Aluguel(Pessoa pessoa, Carro carro, BigDecimal valorTotal, Integer tempoEmHoras, LocalDate dataDaSaida,
+    public Aluguel(Pessoa pessoa, Carro carro, Integer tempoEmHoras, LocalDate dataDaSaida,
                    LocalDate dataDaChegada, TipoPagamento pagamento) {
         this.pessoa = pessoa;
         this.carro = carro;
-        this.valorTotal = valorTotal;
+        this.valorTotal = carro.getValorHora().multiply(BigDecimal.valueOf(tempoEmHoras));
         this.tempoEmHoras = tempoEmHoras;
         this.dataDaSaida = dataDaSaida;
         this.dataDaChegada = dataDaChegada;

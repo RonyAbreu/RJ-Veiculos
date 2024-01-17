@@ -1,37 +1,55 @@
 package infra;
 
 import entidade.Carro;
+import exceptions.CarroJaExisteException;
+import exceptions.CarroNaoExisteException;
 import infra.interfaces.CrudInterface;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static java.util.stream.Collectors.toList;
-
-public class CarrosDoSistema implements CrudInterface {
+public class CarrosDoSistema implements CrudInterface<Carro> {
 
     private final Map<String, Carro> carros = new HashMap<>();
 
     @Override
-    public void cadastrar(Object type) {
-        carros.put((String) type, (Carro) type);
+    public void cadastrar(Carro carro) {
+        if (existeNoSistema(carro.getNumeroChassi()))
+            throw new CarroJaExisteException();
+        carros.put(carro.getNumeroChassi(), carro);
     }
 
     @Override
     public void remover(String id) {
+        if (!existeNoSistema(id))
+            throw new CarroNaoExisteException();
         carros.remove(id);
     }
 
     @Override
-    public Object buscar(String id) {
+    public Carro buscar(String id) {
+        if (!existeNoSistema(id))
+            throw new CarroNaoExisteException();
         return carros.get(id);
     }
 
     @Override
-    public Object atualizar(String id, Object type) {
-        return carros.put(id, (Carro) type);
+    public Carro atualizar(String id, Carro carroNovo) {
+        if (!existeNoSistema(id))
+            throw new CarroNaoExisteException();
+        Carro carroVelho = carros.get(id);
+        atualizarCarro(carroVelho, carroNovo);
+        return carroVelho;
+    }
+
+    private void atualizarCarro(Carro carroVelho , Carro carroNovo){
+        carroVelho.setMarca(carroNovo.getMarca());
+        carroVelho.setModelo(carroNovo.getModelo());
+        carroVelho.setCor(carroNovo.getCor());
+        carroVelho.setCombustivel(carroNovo.getCombustivel());
+        carroVelho.setQuantPortas(carroNovo.getQuantPortas());
     }
 
     @Override
@@ -40,7 +58,7 @@ public class CarrosDoSistema implements CrudInterface {
     }
 
     @Override
-    public List retornarTodos() {
-        return Arrays.asList(carros.values().toArray());
+    public List<Carro> retornarTodos() {
+        return new ArrayList<>(carros.values());
     }
 }

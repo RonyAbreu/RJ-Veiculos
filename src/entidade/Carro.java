@@ -15,9 +15,7 @@ public class Carro {
     private BigDecimal valorHora;
     private BigDecimal valorCarro;
 
-    public Carro(){
-
-    }
+    public Carro(){}
 
     public Carro(String numeroChassi, String modelo, String marca, String cor, TipoCombustivel combustivel, Integer quantPortas, BigDecimal valorHora, BigDecimal valorCarro ){
         this.numeroChassi = numeroChassi;
