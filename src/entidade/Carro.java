@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Carro {
-
+    private String numeroChassi;
     private String modelo;
     private String marca;
     private String cor;
@@ -14,6 +14,20 @@ public class Carro {
     private Integer quantPortas;
     private BigDecimal valorHora;
     private BigDecimal valorCarro;
+
+    public Carro(){}
+
+    public Carro(String numeroChassi, String modelo, String marca, String cor, TipoCombustivel combustivel, Integer quantPortas, BigDecimal valorHora, BigDecimal valorCarro ){
+        this.numeroChassi = numeroChassi;
+        this.modelo = modelo;
+        this.marca = marca;
+        this.cor = cor;
+        this.combustivel = combustivel;
+        this.quantPortas = quantPortas;
+        this.valorCarro = valorCarro;
+        this.valorHora = valorHora;
+    }
+
 
     @Override
     public String toString() {
@@ -40,6 +54,12 @@ public class Carro {
         return Objects.hash(getModelo(), getMarca(), getCor(), getCombustivel(), getQuantPortas());
     }
 
+    public String getNumeroChassi() {
+        return numeroChassi;
+    }
+    public void setNumeroChassi(String numeroChassi) {
+        this.numeroChassi = numeroChassi;
+    }
     public String getModelo() {
         return modelo;
     }

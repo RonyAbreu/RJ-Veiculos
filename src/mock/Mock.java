@@ -52,7 +52,6 @@ public class Mock {
         return new Aluguel(
                 pessoa,
                 carro,
-                BigDecimal.valueOf(200),
                 4,
                 LocalDate.now(),
                 LocalDate.of(2024,Month.JANUARY,15),
