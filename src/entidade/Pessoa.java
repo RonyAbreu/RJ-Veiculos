@@ -1,9 +1,10 @@
 package entidade;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Pessoa {
+public class Pessoa implements Serializable {
     private String nome;
     private String telefone;
     private String email;

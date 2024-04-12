@@ -1,19 +1,23 @@
 package infra;
 
+import db.DB;
+import db.factory.DBFactory;
 import entidade.Aluguel;
 import exceptions.AluguelException;
 import infra.interfaces.GerenciaAluguelECompraInterface;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AlugueisDoSistema implements GerenciaAluguelECompraInterface<Aluguel> {
-
     private final List<Aluguel> alugueis = new ArrayList<>();
+    private final DB<Aluguel> dataBase = DBFactory.createAluguelDB();
 
     @Override
     public void cadastrar(Aluguel aluguel) {
         alugueis.add(aluguel);
+        dataBase.salvarDados(alugueis);
     }
 
     @Override
@@ -21,7 +25,8 @@ public class AlugueisDoSistema implements GerenciaAluguelECompraInterface<Alugue
         for (Aluguel aluguel : this.alugueis) {
             if (aluguel.emailEChassiEhValido(email, chassi)) {
                 alugueis.remove(aluguel);
-                break;
+                dataBase.salvarDados(alugueis);
+                return;
             }
         }
         throw new AluguelException("Email ou número do Chassi inválidos.");

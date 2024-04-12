@@ -2,11 +2,12 @@ package entidade;
 
 import enums.TipoPagamento;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Aluguel {
+public class Aluguel implements Serializable {
     private Pessoa pessoa;
     private Carro carro;
     private BigDecimal valorTotal;

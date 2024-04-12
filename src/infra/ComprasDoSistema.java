@@ -1,5 +1,7 @@
 package infra;
 
+import db.DB;
+import db.factory.DBFactory;
 import entidade.Compra;
 import exceptions.CompraException;
 import infra.interfaces.GerenciaAluguelECompraInterface;
@@ -9,10 +11,12 @@ import java.util.List;
 
 public class ComprasDoSistema implements GerenciaAluguelECompraInterface<Compra> {
     private final List<Compra> listaDeCompras = new ArrayList<>();
+    private final DB<Compra> dataBase = DBFactory.createCompraDB();
 
     @Override
     public void cadastrar(Compra compra) {
         listaDeCompras.add(compra);
+        dataBase.salvarDados(listaDeCompras);
     }
 
     @Override
@@ -20,6 +24,7 @@ public class ComprasDoSistema implements GerenciaAluguelECompraInterface<Compra>
         for (Compra c : listaDeCompras){
             if (c.emailEhValido(email) && c.chassiEhValido(chassi)){
                 listaDeCompras.remove(c);
+                dataBase.salvarDados(listaDeCompras);
                 return;
             }
         }

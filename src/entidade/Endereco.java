@@ -1,8 +1,9 @@
 package entidade;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Endereco {
+public class Endereco implements Serializable {
     private String rua;
     private String bairro;
     private String cidade;

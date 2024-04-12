@@ -1,5 +1,7 @@
 package infra;
 
+import db.DB;
+import db.factory.DBFactory;
 import entidade.Carro;
 import exceptions.CarroJaExisteException;
 import exceptions.CarroNaoExisteException;
@@ -11,14 +13,15 @@ import java.util.List;
 import java.util.Map;
 
 public class CarrosDoSistema implements CrudInterface<Carro> {
-
     private final Map<String, Carro> carros = new HashMap<>();
+    private final DB<Carro> dataBase = DBFactory.createCarrosDB();
 
     @Override
     public void cadastrar(Carro carro) {
         if (existeNoSistema(carro.getNumeroChassi()))
             throw new CarroJaExisteException();
         carros.put(carro.getNumeroChassi(), carro);
+        dataBase.salvarDados(retornarTodos());
     }
 
     @Override
@@ -26,6 +29,7 @@ public class CarrosDoSistema implements CrudInterface<Carro> {
         if (!existeNoSistema(id))
             throw new CarroNaoExisteException();
         carros.remove(id);
+        dataBase.salvarDados(retornarTodos());
     }
 
     @Override

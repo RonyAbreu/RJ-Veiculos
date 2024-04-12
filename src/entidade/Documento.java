@@ -2,9 +2,10 @@ package entidade;
 
 import enums.TipoDocumento;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Documento {
+public class Documento implements Serializable {
     private TipoDocumento tipoDocumento;
     private String numeracao;
 

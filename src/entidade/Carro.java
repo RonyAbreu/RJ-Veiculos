@@ -2,10 +2,11 @@ package entidade;
 
 import enums.TipoCombustivel;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Carro {
+public class Carro implements Serializable {
     private String numeroChassi;
     private String modelo;
     private String marca;

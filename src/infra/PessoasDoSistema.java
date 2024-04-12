@@ -1,5 +1,7 @@
 package infra;
 
+import db.DB;
+import db.factory.DBFactory;
 import entidade.Pessoa;
 import exceptions.PessoaJaExisteException;
 import exceptions.PessoaNaoExisteException;
@@ -12,6 +14,7 @@ import java.util.Map;
 
 public class PessoasDoSistema implements CrudInterface<Pessoa> {
     private final Map<String, Pessoa> mapaDePessoas = new HashMap<>();
+    private final DB<Pessoa> dataBase = DBFactory.createPessoasDB();
 
     @Override
     public void cadastrar(Pessoa pessoa) {
@@ -19,6 +22,7 @@ public class PessoasDoSistema implements CrudInterface<Pessoa> {
             throw new PessoaJaExisteException();
         }
         mapaDePessoas.put(pessoa.getDocumento().getNumeracao(), pessoa);
+        dataBase.salvarDados(retornarTodos());
     }
 
     @Override
@@ -27,6 +31,7 @@ public class PessoasDoSistema implements CrudInterface<Pessoa> {
             throw new PessoaNaoExisteException();
         }
         mapaDePessoas.remove(cpf);
+        dataBase.salvarDados(retornarTodos());
     }
 
     @Override
